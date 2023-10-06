@@ -144,4 +144,5 @@ class Bibliotheque:
         if b in self.__bibliothecaires
             self.__bibliothecaires.remove(b)
         else:
+            print('Ce bibliothecaire n est pas enregistré')
             
