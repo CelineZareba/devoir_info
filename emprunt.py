@@ -12,10 +12,11 @@ from livre import *
 
 # ***** classe Emprunt *****        
 class Emprunt:
-    def __init__(self,numero_lecteur,numero_livre):
+    def __init__(self,numero_lecteur,numero_livre,bibliothecaire):
         self.__numero_lecteur = numero_lecteur
         self.__numero_livre = numero_livre
         self.__date = date.isoformat(date.today())
+        self.__num_bibli=bibliothecaire
 
     def get_numero_lecteur(self):
         return self.__numero_lecteur
