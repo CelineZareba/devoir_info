@@ -152,5 +152,17 @@ class Bibliotheque:
         else:
             print('Le bibliothecaire n est pas enregisté dans cette bibliotheque')
             
+    def chercher_bibliothecaire_par_nom(self,nom,prenom):
+        for b in self.__bibliothecaires:
+            if b.__nom == nom and b.__prenom==prenom:
+                return b
+        print('Ce bibliothecaire n existe pas ici')
+        
+    def chercher_bibliothecaire_par_numero(self,numero):
+        for b in self.bibliothecaires:
+            if b.__numero == str(numero) :
+                return b
+        print('Ce bibliothecaire n existe pas ici ')
+        
         
            
