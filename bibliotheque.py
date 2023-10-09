@@ -186,12 +186,13 @@ class Bibliotheque:
                 
             #on modifie les attributs du bibliothecaire
             bibliothecaire=self.chercher_bibliothecaire(numero_bibliothecaire)
-            if bibliothecaire != None : bibliothecaire.set_nb_emprunts(bibliothecaire.get_nb_emprunts()-1)
+            if bibliothecaire != None : 
+                bibliothecaire.set_nb_emprunts(bibliothecaire.get_nb_emprunts()-1)
                 print('Retour effectué')
                 return True
-        else:
-            print('Aucun emprunt ne correspond à ces informations')
-            return False
+            else:
+                print('Aucun emprunt ne correspond à ces informations')
+                return False
 
 
 ###AFFICHAGE DES LISTES DE LA BIBLIOTHEQUE
@@ -207,8 +208,12 @@ class Bibliotheque:
             
     def affiche_emprunts(self):
         for e in self.__emprunts:
-            print(e)     
-
+            print(e)
+            
+    def affiche_bibliothecaires(self):
+        for b in self.__bibliothecaires:
+            print(b)
+            
     
     
     
