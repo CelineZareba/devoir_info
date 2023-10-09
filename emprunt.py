@@ -25,5 +25,5 @@ class Emprunt:
         return self.__date
 
     def __str__(self):
-        return 'Emprunt - Numero lecteur : {}, Numero livre: {}, Numero biblithecaire :  {}, Date : {}'.format(self.__numero_lecteur,self.__numero_livre,self.__numero_bibliothecaire,self.__date)
+        return 'Emprunt - Numero lecteur : {}, Numero livre: {}, Numero bibliothecaire :  {}, Date : {}'.format(self.__numero_lecteur,self.__numero_livre,self.__numero_bibliothecaire,self.__date)
   
