@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Sep 20 07:27:13 2022
 
-@author: dellandrea
-"""
 
 from datetime import date
 from lecteur import *
