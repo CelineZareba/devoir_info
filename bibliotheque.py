@@ -140,29 +140,33 @@ class Bibliotheque:
         for e in self.__emprunts:
             print(e)     
             
-    def add_bibliothecaire(self,bibliothecaire):
-        if bibliothecaire in self.__bibliothecaires:
-            print('Le bibliothecaire est déja enregistré')
+    def ajout_bibliothecaire(self,nom,prenom,adresse,numero):
+        #on vérifie tout d'abord que le bibliothècaire n'est pas déjà enregistré
+        b1=self.chercher_bibliothecaire_numero(numero)
+        if b1 in self.__bibliothecaires:  
+            print('Le bibliothecaire est déja enregistré à la bibliothèque.')
         else:
-            self.__bibliothecaires.append(bibliothecaire)
+            b=Bibliothecaire(nom,prenom,adresse,numero) #sinon, on peut créer une instance bibliothècaire 
+            self.__bibliothecaires.append(b) #et l'ajouter à la liste des bibliothecaires de la bibliotheque
             
-    def remove_bibliothecaire(self,b):
-        if b in self.__bibliothecaires:
-            self.__bibliothecaires.remove(b)
+    def retrait_bibliothecaire(self,nom,prenom):
+        b=self.chercher_bibliothecaire_nom(nom,prenom) 
+        if b in self.__bibliothecaires: #on vérifie que le bibliothècaire fait bien parti du personnel de la bibliothèque
+            self.__bibliothecaires.remove(b) #dans ce cas, on peut l'enlever de la liste des bibliothècaires
         else:
-            print('Le bibliothecaire n est pas enregisté dans cette bibliotheque')
+            print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque")
             
-    def chercher_bibliothecaire_par_nom(self,nom,prenom):
+    def chercher_bibliothecaire_nom(self,nom,prenom):
         for b in self.__bibliothecaires:
             if b.__nom == nom and b.__prenom==prenom:
                 return b
-        print('Ce bibliothecaire n existe pas ici')
+        print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque")
         
-    def chercher_bibliothecaire_par_numero(self,numero):
-        for b in self.bibliothecaires:
+    def chercher_bibliothecaire_numero(self,numero):
+        for b in self.__bibliothecaires:
             if b.__numero == str(numero) :
                 return b
-        print('Ce bibliothecaire n existe pas ici ')
+        print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque")
         
         
            
