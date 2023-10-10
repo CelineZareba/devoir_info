@@ -24,8 +24,8 @@ b.ajout_livre('L\'Etranger','Albert Camus',104,2)
 # Ajout de Bibliothecaire
 
 b.ajout_bibliothecaire('Renaud','Jean-Didier','Vertou',1)
-b.ajout_bibliothecaire('Portier', 'Josselin', 'Lyon', 2)
-b.ajout_bibliothecaire('Girondeau', 'Ezequiel','Buenos Aires', 3)
+b.ajout_bibliothecaire('Portier', 'Josselin', 'Lyon',2)
+b.ajout_bibliothecaire('Girondeau', 'Ezequiel','Buenos Aires',3)
 # Affichage des lecteurs, des livres, des bibliothécaires et du conservateur
 print('\n--- Liste des lecteurs :')
 print('-------------------------------')
@@ -35,7 +35,7 @@ print('-------------------------------')
 b.affiche_livres()
 print('\n---Liste des bibliothécaires:')
 print('-------------------------------')
-b.affiche_bibliothecairs()
+b.affiche_bibliothecaires()
 
 # Recherches de lecteurs par numero
 print('\n--- Recherche de lecteurs :')
@@ -94,9 +94,9 @@ else:
     print('Livre non trouve')
 
 #Recherche de bibliothecaire par nom
-print('\n--- Recherche de livres :')
+print('\n--- Recherche de bibliothécaires :')
 print('-------------------------------')
-bib= b.chercher_bibliothecaire_nom('Portier', 'Josselin')
+bib= b.chercher_bibliothecaire_nom('Renaud', 'Jean-Didier')
 if bib!=None:
     print('Bibiliothécaire trouve',bib)
 else:
@@ -110,17 +110,17 @@ else:
 
 # Recherche de bibliothecaire par numero
 
-livre = b.chercher_livre_numero(101)
-if livre != None:
-    print('Livre trouve :',livre)
+bib = b.chercher_bibliothecaire_numero(1)
+if bib != None:
+    print('Bibliothécaire trouve :',bib)
 else:
-    print('Livre non trouve')
+    print('Bibliothécaire non trouvé')
 
-livre = b.chercher_livre_numero(106)
-if livre != None:
-    print('Livre trouve :',livre)
+bib = b.chercher_bibliothecaire_numero(106)
+if bib != None:
+    print('Bibliothécaire trouvé :',bib)
 else:
-    print('Livre non trouve')
+    print('Bibliothécaire non trouvé')
 
 # Quelques emprunts
 print('\n--- Quelques emprunts :')
@@ -148,12 +148,12 @@ b.affiche_livres()
 # Quelques retours de livres
 print('\n--- Quelques retours de livres :')
 print('-------------------------------')
-b.retour_livre(1,101)
-b.retour_livre(1,102)
-b.retour_livre(3,104)
-b.retour_livre(10,108)
+b.retour_livre(1,101,1)
+b.retour_livre(1,102,1)
+b.retour_livre(3,104,2)
+b.retour_livre(10,108,3)
 
-# Affichage des emprunts, des lecteurs et des livres
+# Affichage des emprunts, des lecteurs, des livres et des bibliothécaires
 print('\n--- Liste des emprunts :')
 print('-------------------------------')
 b.affiche_emprunts()
@@ -163,6 +163,10 @@ b.affiche_lecteurs()
 print('\n--- Liste des livres :')
 print('-------------------------------')
 b.affiche_livres()
+print('\n--- Liste des bibliothécaires :')
+print('-------------------------------')
+b.affiche_bibliothecaires()
+
 
 # Suppression de quelques livres
 rep = b.retrait_livre(101)
@@ -171,7 +175,7 @@ if not rep:
 else:
     print('Retrait du livre effectue')
 
-b.retour_livre(2,101)
+b.retour_livre(2,101,3)
 
 rep = b.retrait_livre(101)
 if not rep:
@@ -186,15 +190,32 @@ if not rep:
 else:
     print('Retrait du lecteur effectue')
 
-b.retour_livre(1,104)
+b.retour_livre(1,104,2)
 
 rep = b.retrait_lecteur(1)
 if not rep:
     print('Retrait du lecteur impossible')
 else:
     print('Retrait du lecteur effectue')
+    
+#Suppression de quelques bibliothécaires
 
-# Affichage des emprunts, des lecteurs et des livres
+rep=b.retrait_bibliothecaire('Portier','Josselin')
+if not rep:
+    print('Retrait du bibliothécaire impossible')
+else:
+    print('Retrait effectué')
+
+b.retour_livre(4,103,2)
+
+rep=b.retrait_bibliothecaire('Portier','Josselin')
+if not rep:
+    print('Retrait du bibliothécaire impossible')
+else:
+    print('Retrait effectué')
+
+
+# Affichage des emprunts, des lecteurs, des livres et des bibliothécaires
 print('\n--- Liste des emprunts :')
 print('-------------------------------')
 b.affiche_emprunts()
@@ -204,5 +225,9 @@ b.affiche_lecteurs()
 print('\n--- Liste des livres :')
 print('-------------------------------')
 b.affiche_livres()
+print('\n--- Liste des bibliothécaires :')
+print('-------------------------------')
+b.affiche_bibliothecaires()
+
 
 

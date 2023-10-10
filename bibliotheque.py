@@ -14,6 +14,7 @@ class Bibliotheque:
         self.__lecteurs = [] 
         self.__livres = []
         self.__emprunts = []
+        self.__bibliothecaires=[]
         self.__conservateur = Conservateur(nom_c,prenom_c,adresse_c,nom) #on crée le conservateur associé à la bibliothèque
         
     def get_nom(self):
@@ -67,7 +68,7 @@ class Bibliotheque:
     def ajout_bibliothecaire(self,nom,prenom,adresse,numero):
         #on vérifie tout d'abord que le bibliothècaire n'est pas déjà enregistré
         b1=self.chercher_bibliothecaire_numero(numero)
-        if b1 in self.__bibliothecaires:  
+        if b1!=None:  
             print('Le bibliothecaire est déja enregistré à la bibliothèque.')
         else:
             b=Bibliothecaire(nom,prenom,adresse,numero) #sinon, on peut créer une bibliothècaire 
@@ -75,10 +76,11 @@ class Bibliotheque:
             
     def retrait_bibliothecaire(self,nom,prenom):
         b=self.chercher_bibliothecaire_nom(nom,prenom) 
-        if b in self.__bibliothecaires: #on vérifie que le bibliothècaire fait bien parti du personnel de la bibliothèque
+        if b!=None and b.get_nb_emprunts()==0: #on vérifie que le bibliothècaire fait bien parti du personnel de la bibliothèque
             self.__bibliothecaires.remove(b) #dans ce cas, on peut l'enlever de la liste des bibliothècaires
+            return True                
         else:
-            print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque.")
+            return False
 
   ###CHERCHER LECTEUR, LIVRE, EMPRUNT ET BIBLIOTHECAIRE      
     def chercher_lecteur_numero(self,numero):
@@ -115,15 +117,15 @@ class Bibliotheque:
     
     def chercher_bibliothecaire_nom(self,nom,prenom):
         for b in self.__bibliothecaires:
-            if b.__nom == nom and b.__prenom==prenom:
+            if b.get_nom() == nom and b.get_prenom()==prenom:
                 return b
-        print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque")
+        return None
         
     def chercher_bibliothecaire_numero(self,numero):
-        for b in self.__bibliothecaires:
-            if b.__numero == str(numero) :
-                return b
-        print("Le bibliothècaire n'est pas enregistré dans cette bibliothèque")
+        for bib in self.__bibliothecaires:
+            if bib.get_numero() == numero :
+                return bib
+        return None
             
 ###CREATION D'UN NOUVEL EMPRUNT OU D'UN RETOUR
 
@@ -185,7 +187,7 @@ class Bibliotheque:
             if livre != None: livre.set_nb_dispo(livre.get_nb_dispo()+1)
                 
             #on modifie les attributs du bibliothecaire
-            bibliothecaire=self.chercher_bibliothecaire(numero_bibliothecaire)
+            bibliothecaire=self.chercher_bibliothecaire_numero(numero_bibliothecaire)
             if bibliothecaire != None : 
                 bibliothecaire.set_nb_emprunts(bibliothecaire.get_nb_emprunts()-1)
                 print('Retour effectué')

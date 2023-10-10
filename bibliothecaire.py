@@ -4,13 +4,13 @@ from emprunt import *
 class Bibliothecaire(Personne):
     def __init__(self,nom,prenom,adresse,numero):
         Personne.__init__(self,nom,prenom,adresse)
-        set_numero(self,numero)
+        self.set_numero(numero)
         self.__nb_emprunt=0
         
     def set_numero(self,numero):
         self.__numero=numero
     
-    def get_numero(self,numero):
+    def get_numero(self):
         return self.__numero
     
     def set_nb_emprunts(self,nombre):

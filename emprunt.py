@@ -10,7 +10,7 @@ class Emprunt:
         self.__numero_lecteur = numero_lecteur
         self.__numero_livre = numero_livre
         self.__date = date.isoformat(date.today())
-        self.__numero_biblithecaire=numero_bibliothecaire
+        self.__numero_bibliothecaire = numero_bibliothecaire
 
     def get_numero_lecteur(self):
         return self.__numero_lecteur

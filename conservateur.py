@@ -3,7 +3,7 @@ from personne import Personne
 class Conservateur(Personne):
     def __init__(self,nom,prenom,adresse,nom_bibliotheque): 
         Personne.__init__(self,nom,prenom,adresse)
-        self.__bibliotheque=self.get_bibliotheque() 
+        self.set_bibliotheque(nom_bibliotheque) 
 
     def get_bibliotheque(self):
         return self.__bibliotheque
