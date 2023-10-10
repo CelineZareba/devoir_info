@@ -23,9 +23,9 @@ b.ajout_livre('L\'Etranger','Albert Camus',104,2)
 
 # Ajout de Bibliothecaire
 
-b.ajout_bibliothecaire('Renaud','Jean-Didier','Vertou',01)
-b.ajout_bibliothecaire('Portier', 'Josselin', 'Lyon', 02)
-b.ajout_bibliothecaire('Girondeau', 'Ezequiel','Buenos Aires', 03)
+b.ajout_bibliothecaire('Renaud','Jean-Didier','Vertou',1)
+b.ajout_bibliothecaire('Portier', 'Josselin', 'Lyon', 2)
+b.ajout_bibliothecaire('Girondeau', 'Ezequiel','Buenos Aires', 3)
 # Affichage des lecteurs, des livres, des bibliothécaires et du conservateur
 print('\n--- Liste des lecteurs :')
 print('-------------------------------')
@@ -94,30 +94,45 @@ else:
     print('Livre non trouve')
 
 #Recherche de bibliothecaire par nom
-bib= b.chercher_bibliothecaire_nom('Portier', 'Josselin'):
-if bib=!None:
+print('\n--- Recherche de livres :')
+print('-------------------------------')
+bib= b.chercher_bibliothecaire_nom('Portier', 'Josselin')
+if bib!=None:
     print('Bibiliothécaire trouve',bib)
 else:
     print('Bibliothécaire non trouvé')
     
-bib= b.chercher_bibliothecaire_nom('Moura','Lucas'):
-if bib=!None:
+bib= b.chercher_bibliothecaire_nom('Moura','Lucas')
+if bib!=None:
     print('Bibiliothécaire trouve',bib)
 else:
     print('Bibliothécaire non trouvé')
 
+# Recherche de bibliothecaire par numero
+
+livre = b.chercher_livre_numero(101)
+if livre != None:
+    print('Livre trouve :',livre)
+else:
+    print('Livre non trouve')
+
+livre = b.chercher_livre_numero(106)
+if livre != None:
+    print('Livre trouve :',livre)
+else:
+    print('Livre non trouve')
 
 # Quelques emprunts
 print('\n--- Quelques emprunts :')
 print('-------------------------------')
-b.emprunt_livre(1,101,01)
-b.emprunt_livre(1,104,02)
-b.emprunt_livre(2,101,03)
-b.emprunt_livre(2,105,01)
-b.emprunt_livre(3,101,02)
-b.emprunt_livre(3,104,03)
-b.emprunt_livre(4,102,01)
-b.emprunt_livre(4,103,02)
+b.emprunt_livre(1,101,1)
+b.emprunt_livre(1,104,2)
+b.emprunt_livre(2,101,3)
+b.emprunt_livre(2,105,1)
+b.emprunt_livre(3,101,2)
+b.emprunt_livre(3,104,3)
+b.emprunt_livre(4,102,1)
+b.emprunt_livre(4,103,2)
 
 # Affichage des emprunts, des lecteurs des livres et des bibliothecaires
 print('\n--- Liste des emprunts :')
