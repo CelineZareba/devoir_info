@@ -1,11 +1,154 @@
-#on importe tous les documents dont on aura besoin
-from lecteur import *
-from livre import *
-from emprunt import *
-from bibliothecaire import *
-from conservateur import *
+from datetime import date
+
+# ***** classe Personne *****
+class Personne:
+    def __init__(self,nom,prenom,adresse):
+        self.__nom = nom
+        self.__prenom = prenom
+        self.__adresse = adresse
+        
+    def __str__(self):
+        return f"Classe Personne - Nom : {self.__nom}, Prenom : {self.__prenom}, Adresse : {self.__adresse}"
+        
+    def set_nom(self,nom):
+        self.__nom = nom
+        
+    def get_nom(self):
+        return self.__nom
+        
+    def set_prenom(self,prenom):
+        self.__prenom = prenom
+        
+    def get_prenom(self):
+        return self.__prenom
+        
+    def set_adresse(self,adresse):
+        self.__adresse = adresse
+        
+    def get_adresse(self):
+        return self.__adresse
     
-      
+
+# ***** classe Livre *****          
+class Livre:
+    def __init__(self,titre,auteur,numero,nb_total):
+        self.__titre = titre        
+        self.__auteur = auteur
+        self.__numero = numero
+        self.__nb_total = nb_total
+        self.__nb_dispo = nb_total
+
+    def set_auteur(self,auteur):
+        self.__auteur = auteur
+        
+    def get_auteur(self):
+        return self.__auteur
+        
+    def set_titre(self,titre):
+        self.__titre = titre
+        
+    def get_titre(self):
+        return self.__titre
+        
+    def set_numero(self,numero):
+        self.__numero = numero
+        
+    def get_numero(self):
+        return self.__numero
+    
+    def set_nb_total(self,nb_total):
+        self.__nb_total = nb_total
+        
+    def get_nb_total(self):
+        return self.__nb_total
+
+    def set_nb_dispo(self,nb_dispo):
+        self.__nb_dispo = nb_dispo
+        
+    def get_nb_dispo(self):
+        return self.__nb_dispo
+        
+    def __str__(self):
+        return 'Livre - Auteur : {}, Titre : {}, Numero : {}, Nb total : {}, Nb dispo : {}'.format(self.__auteur,self.__titre,self.__numero,self.__nb_total,self.__nb_dispo)
+
+# ***** classe Lecteur *****        
+class Lecteur(Personne):
+    def __init__(self,nom,prenom,adresse,numero):
+        Personne.__init__(self,nom,prenom,adresse)        
+        self.__numero = numero
+        self.__nb_emprunts = 0
+        
+    def set_numero(self,numero):
+        self.__numero = numero
+        
+    def get_numero(self):
+        return self.__numero
+        
+    def set_nb_emprunts(self,nb_emprunts):
+        self.__nb_emprunts = nb_emprunts
+        
+    def get_nb_emprunts(self):
+        return self.__nb_emprunts
+        
+    def __str__(self): #Permet d'afficher les proprietes de l'objet avec la fonction print
+        return 'Lecteur - Nom : {}, Prenom : {}, Adresse : {}, Numero : {}, Nb emprunts : {}'.format(self.get_nom(),self.get_prenom(),self.get_adresse(),self.__numero,self.__nb_emprunts)
+
+# ***** classe Emprunt *****        
+class Emprunt:
+    def __init__(self,numero_lecteur,numero_livre,numero_bibliothecaire):
+        self.__numero_lecteur = numero_lecteur
+        self.__numero_livre = numero_livre
+        self.__date = date.isoformat(date.today())
+        self.__numero_bibliothecaire = numero_bibliothecaire
+
+    def get_numero_lecteur(self):
+        return self.__numero_lecteur
+        
+    def get_numero_livre(self):
+        return self.__numero_livre
+
+    def get_numero_bibliothecaire(self):
+        return self.__numero_bibliothecaire
+        
+    def get_date(self):
+        return self.__date
+
+    def __str__(self):
+        return 'Emprunt - Numero lecteur : {}, Numero livre: {}, Numero bibliothecaire :  {}, Date : {}'.format(self.__numero_lecteur,self.__numero_livre,self.__numero_bibliothecaire,self.__date)
+
+#***classe Bibliothécaire***
+
+class Bibliothecaire(Personne):
+    def __init__(self,nom,prenom,adresse,numero):
+        Personne.__init__(self,nom,prenom,adresse) #utilisation du constructeur de Personne
+        self.set_numero(numero)
+        self.__nb_emprunt=0 #par defaut le bibliothécaire n'a réalisé aucun emprunt
+        
+    def set_numero(self,numero):
+        self.__numero=numero
+    
+    def get_numero(self):
+        return self.__numero
+    
+    def set_nb_emprunts(self,nombre):
+        self.__nb_emprunt=nombre
+        
+    def get_nb_emprunts(self):
+        return self.__nb_emprunt
+
+#*** classe Conservateur***
+
+class Conservateur(Personne):
+    def __init__(self,nom,prenom,adresse,nom_bibliotheque): 
+        Personne.__init__(self,nom,prenom,adresse) #utilisation du constructeur de Personne
+        self.set_bibliotheque(nom_bibliotheque) 
+
+    def get_bibliotheque(self):
+        return self.__bibliotheque
+
+    def set_bibliotheque(self,nom_bibliotheque):
+        self.__bibliotheque=nom_bibliotheque
+
 ###DEFINITION DE LA CLASSE BIBLIOTHEQUE
 
 class Bibliotheque:
@@ -81,6 +224,7 @@ class Bibliotheque:
             return True                
         else:
             return False
+
 
   ###CHERCHER LECTEUR, LIVRE, EMPRUNT ET BIBLIOTHECAIRE      
     def chercher_lecteur_numero(self,numero):

@@ -1,10 +1,5 @@
-from emprunt import * 
-from lecteur import *
-from livre import *
-from personne import *
 from bibliotheque import *
-from bibliothecaire import *
-from conservateur import *
+
 
 # Creation d'une bibliotheque
 b = Bibliotheque('Bibliotheque ECL','Pascal','Ray','Ecully')
