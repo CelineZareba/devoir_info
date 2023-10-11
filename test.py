@@ -139,6 +139,9 @@ b.affiche_lecteurs()
 print('\n--- Liste des livres :')
 print('-------------------------------')
 b.affiche_livres()
+print('\n--- Liste des bibliothécaires :')
+print('-------------------------------')
+b.affiche_bibliothecaires()
 
 # Quelques retours de livres
 print('\n--- Quelques retours de livres :')
